@@ -21,7 +21,13 @@ const UserController = {
 
       //console.log(token, '+++');
       response.header('Authorization', token)
-      response.send(new Result(200, token, '登录成功！'))
+      response.send(new Result(200, {
+        username: res[0].username,
+        gender: res[0].gender ? res[0].gender : 0,
+        introduction: res[0].introduction,
+        avatar: res[0].avatar,
+        role: res[0].role
+      }, '登录成功！'))
     }
   }
 }

@@ -10,7 +10,7 @@ const JWT = {
    */
   generate(value) {
     // sign({}, string, options{配置过期时间})
-    return jsonWebToken.sign(value, secret, { expiresIn: "86400s" })
+    return jsonWebToken.sign(value, secret, { expiresIn: "1d" })
   },
   /**
    * 

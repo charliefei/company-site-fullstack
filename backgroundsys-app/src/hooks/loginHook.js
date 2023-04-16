@@ -123,7 +123,7 @@ export const useInitForm = () => {
     }
 }
 
-export const useSubmitForm = (loginForm, router) => {
+export const useSubmitForm = (loginForm, router, store) => {
     // 提交表单
     const submitForm = (formEl) => {
         if (!formEl) return
@@ -139,8 +139,11 @@ export const useSubmitForm = (loginForm, router) => {
                 })
 
                 if (res.code === 200) {
+                    console.log(res);
                     // 3. 本地持久化存储token --> axios响应拦截器中
-                    // 4. 跳转页面
+                    // 4. 存储当前登录的用户信息
+                    store.commit('getUserInfo', res.data)
+                    // 5. 跳转页面
                     await router.push('/index')
                     ElMessage({
                         showClose: true,

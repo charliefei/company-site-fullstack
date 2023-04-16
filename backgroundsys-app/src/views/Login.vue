@@ -33,8 +33,10 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 import {useParticles,useInitForm,useSubmitForm} from "@/hooks/loginHook";
 const router = useRouter()
+const store = useStore()
 // 初始化login页面粒子效果
 const {options, particlesInit} = useParticles();
 
@@ -42,7 +44,7 @@ const {options, particlesInit} = useParticles();
 const {loginFormRef, loginForm, loginRules, resetForm} = useInitForm();
 
 // 提交表单
-const {submitForm} = useSubmitForm(loginForm, router);
+const {submitForm} = useSubmitForm(loginForm, router, store);
 </script>
 
 <style scoped>

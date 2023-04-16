@@ -4,13 +4,13 @@ import createPersistedState from 'vuex-persistedstate'
 export default createStore({
     state:{
         isGetRoute: false,
-        isCollapse: false
+        isCollapse: false,
+        userInfo: {}
     },
     getters:{
 
     },
     actions:{
-
     },
     mutations:{
         changeIsGetRoute(state, value){
@@ -18,11 +18,20 @@ export default createStore({
         },
         changeCollapseState(state){
             state.isCollapse = !state.isCollapse
+        },
+        getUserInfo(state, value) {
+            state.userInfo = {
+                ...state.userInfo,
+                ...value
+            }
+        },
+        clearUserInfo(state) {
+            state.userInfo = {}
         }
     },
     plugins: [
         createPersistedState({
-            paths: ['isCollapse']
+            paths: ['isCollapse', 'userInfo']
         })
     ],
     modules:{

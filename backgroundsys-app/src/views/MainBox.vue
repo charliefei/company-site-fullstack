@@ -4,7 +4,7 @@
       <AsideBar :isCollapse="store.state.isCollapse" />
       <el-container direction="vertical">
         <TopHeader />
-        <el-main>
+        <el-main style="margin: 0;padding: 15px;">
           <RouterView />
         </el-main>
       </el-container>

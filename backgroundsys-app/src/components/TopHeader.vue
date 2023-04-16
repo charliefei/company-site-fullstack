@@ -10,7 +10,9 @@
       <h2 style="margin-left: 10px;display:inline-block">XXX管理系统</h2>
     </div>
     <div class="right">
-      <h2 style="display: inline-block;margin-right: 10px">欢迎 admin 回来</h2>
+      <h2 style="display: inline-block;margin-right: 10px">
+        欢迎 {{ store.state.userInfo.username }} 回来
+      </h2>
       <el-dropdown>
         <span class="el-dropdown-link">
           <el-icon :size="30">
@@ -45,6 +47,7 @@ const redirectToCenter = () => {
 
 const logout = () => {
   localStorage.removeItem('token')
+  store.commit('clearUserInfo')
   router.push('/login')
 }
 </script>
