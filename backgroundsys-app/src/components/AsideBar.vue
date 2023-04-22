@@ -36,7 +36,7 @@
 
       <el-sub-menu index="/news-manage">
         <template #title>
-          <el-icon><Edit /></el-icon>
+          <el-icon><MessageBox /></el-icon>
           <span>新闻管理</span>
         </template>
         <el-menu-item index="/news-manage/addnews">
@@ -51,15 +51,15 @@
 
       <el-sub-menu index="/product-manage">
         <template #title>
-          <el-icon><Edit /></el-icon>
+          <el-icon><Files /></el-icon>
           <span>产品管理</span>
         </template>
         <el-menu-item index="/product-manage/addproduct">
-          <el-icon><EditPen /></el-icon>
+          <el-icon><DocumentAdd /></el-icon>
           添加产品
         </el-menu-item>
         <el-menu-item index="/product-manage/productlist">
-          <el-icon><User /></el-icon>
+          <el-icon><Document /></el-icon>
           产品列表
         </el-menu-item>
       </el-sub-menu>
@@ -74,7 +74,9 @@ import {
   User,
   EditPen,
   DocumentAdd,
-  Document
+  Document,
+  MessageBox,
+  Files
 } from '@element-plus/icons-vue'
 import { useRoute } from 'vue-router'
 

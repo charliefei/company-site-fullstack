@@ -1,14 +1,11 @@
 const express = require('express');
 const userRouter = express.Router();
+const multer  = require('multer')
+const upload = multer({ dest: 'public/avatarUploads/' })
 
 const UserController = require('../../controller/admin/UserController')
 
-// userRouter.get('/', (req, res) => {
-  
-// })
-userRouter.post('/login', UserController.login);
-userRouter.get('/home', (req, res) => {
-  res.send({code: 200})  
-});
+userRouter.post('/login', UserController.login)
+userRouter.post('/upload', upload.single('file') , UserController.upload)
 
 module.exports = userRouter;

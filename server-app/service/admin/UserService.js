@@ -8,6 +8,22 @@ const UserService = {
    */
   login: async ({username, password}) => {
     return UserModel.find({ username, password })
+  },
+  /**
+   * 更新接口
+   * @param {*} param0 
+   * @returns 
+   */
+  upload: async ({_id, username, gender, introduction, avatar}) => {
+    if(avatar) {
+      return UserModel.updateOne({_id}, {
+        username, gender, introduction, avatar 
+      })
+    } else {
+      return UserModel.updateOne({_id}, {
+        username, gender, introduction 
+      })
+    }
   }
 }
 

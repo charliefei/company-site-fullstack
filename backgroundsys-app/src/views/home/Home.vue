@@ -20,7 +20,8 @@
       <el-col :span="20">
         <el-card shadow="hover">
           <h4 style="font-style: italic;color: red;">
-            您好！ {{ user }}
+            {{ welcomeText }}
+            <span>{{ user }}</span>
           </h4>
           <hr style="margin: 10px 0 10px 0"/>
           <div style="font-style: italic;font-size: 15px;">
@@ -31,7 +32,7 @@
     </el-row>
   </el-card>
 
-  <el-card class="box-card">
+  <el-card class="box-card product-show">
     <template #header>
       <div class="card-header">
         <span>公司产品</span>
@@ -54,7 +55,7 @@ const store = useStore()
 
 const avatarUrl = computed(() => {
   return store.state.userInfo.avatar ?
-    store.state.userInfo.avatar :
+    'http://localhost:3000' + store.state.userInfo.avatar :
     'https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png'
 })
 
@@ -77,11 +78,16 @@ const user = computed(() => {
 const userDetail = computed(() => {
   return store.state.userInfo.introduction
 })
+
+const welcomeText = computed(() => {
+  return new Date().getHours() < 12 ? 
+  '早上坏😊！今天又是元气大伤的一天～' : '累了🥱，就喝杯咖啡提提神吧～'
+})
 </script>
 
 <style scoped lang="scss">
 .box-card{
-  margin-top: 40px;
+  margin-top: 10px;
 
   .el-card{
     height: 100%;
@@ -94,6 +100,10 @@ const userDetail = computed(() => {
       transform: translate(-50%, -50%);
     }
   }
+}
+
+.product-show{
+  height: 52.5vh;
 }
 
 .el-carousel__item h3 {
