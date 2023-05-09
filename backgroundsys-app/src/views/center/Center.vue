@@ -103,13 +103,13 @@ const userForm = reactive({
   file: null
 })
 const rules = reactive({
-  name: [
+  username: [
     { required: true, message: '请输入用户名', trigger: 'blur' },
   ],
   gender: [
     { required: true, message: '请选择性别', trigger: 'change' }
   ],
-  desc: [
+  introduction: [
     { required: true, message: '请输入个人简介', trigger: 'blur' }
   ],
   avatar: [
@@ -119,7 +119,7 @@ const rules = reactive({
 
 const handleChange = (file) => {
   const url = URL.createObjectURL(file.raw)
-  console.log('上传头像', url);
+  console.log('center-上传头像', url);
   userForm.file = file.raw
   userForm.avatar = url
 }

@@ -9,11 +9,13 @@ export default [
     },
     {
         path:'/user-manage/adduser',
-        component: () => import('@/views/user-manage/UserAdd.vue')
+        component: () => import('@/views/user-manage/UserAdd.vue'),
+        requiredAuth: true
     },
     {
         path:'/user-manage/userlist',
-        component: () => import('@/views/user-manage/UserList.vue')
+        component: () => import('@/views/user-manage/UserList.vue'),
+        requiredAuth: true
     },
     {
         path:'/news-manage/addnews',

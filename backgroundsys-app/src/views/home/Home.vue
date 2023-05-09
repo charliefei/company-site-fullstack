@@ -45,6 +45,20 @@
       </el-carousel-item>
     </el-carousel>
   </el-card>
+
+  <el-card class="box-card product-show">
+    <template #header>
+      <div class="card-header">
+        <span>公司产品</span>
+      </div>
+    </template>
+
+    <el-carousel :interval="4000" type="card" height="200px">
+      <el-carousel-item v-for="item in 6" :key="item">
+        <h3 text="2xl" justify="center">{{ item }}</h3>
+      </el-carousel-item>
+    </el-carousel>
+  </el-card>
 </template>
 
 <script setup>

@@ -143,6 +143,10 @@ export const useSubmitForm = (loginForm, router, store) => {
                     // 3. 本地持久化存储token --> axios响应拦截器中
                     // 4. 存储当前登录的用户信息
                     store.commit('getUserInfo', res.data)
+
+                    // 将vuex中存储的该状态赋值为false，让mainbox再进行一次添加子路由操作
+                    // 因为isGetRoute状态只被修改了一次，需要再次修改进入分支
+                    store.commit('changeIsGetRoute', false)
                     // 5. 跳转页面
                     await router.push('/index')
                     ElMessage({

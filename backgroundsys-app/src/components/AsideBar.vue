@@ -19,7 +19,7 @@
         <span>个人中心</span>
       </el-menu-item>
 
-      <el-sub-menu index="/user-manage">
+      <el-sub-menu index="/user-manage" v-admin>
         <template #title>
           <el-icon><Edit /></el-icon>
           <span>用户管理</span>
@@ -79,19 +79,29 @@ import {
   Files
 } from '@element-plus/icons-vue'
 import { useRoute } from 'vue-router'
-
+import { useStore } from 'vuex'
 const route = useRoute()
+const store = useStore()
 
 defineProps({
   isCollapse: {
     type: Boolean
   }
 })
+
+const vAdmin = {
+  mounted(el) {
+    // console.dir(el);
+    if(store.state.userInfo.role !== 1){
+      el.parentNode.removeChild(el)
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
 .el-menu {
-  height: 100%;
+  height: 100vh;
   border-right:none;
   background: rgb(238,174,202);
   background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);

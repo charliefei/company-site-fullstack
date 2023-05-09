@@ -18,8 +18,26 @@ const router = createRouter({
   ]
 })
 
+// 检查每个路由对象是否存在hasAuth属性，存在则判断是否为管理员，不存在直接放行
+const checkIsRequiredAuth = (value) => {
+  if(value.requiredAuth){
+    return store.state.userInfo.role == 1
+  }  
+  return true
+}
+
 const configRoutes = () => {
+  if(!router.hasRoute('mainbox')){
+    router.addRoute({
+      path: '/mainbox',
+      name: 'mainbox',
+      component: () => import('@/views/MainBox.vue')
+    })
+  }
+
   routes.forEach(value => {
+    // 对需要进行管理员权限校验的进行拦截检查，不需要的直接添加到mainbox路由下
+    checkIsRequiredAuth(value) &&
     router.addRoute('mainbox', value)
   })
 
@@ -37,6 +55,9 @@ router.beforeEach((to, from, next) => {
     } else {
       // 已登录情况，获取到了token
       if (!store.state.isGetRoute) {
+        // 删除mainbox下所有已添加的路由
+        router.removeRoute('mainbox')
+        
         // 第一次进入mainbox，给mainbox配置上子路由，并重新刷新mainbox路由
         configRoutes()
         next({ path: to.fullPath })

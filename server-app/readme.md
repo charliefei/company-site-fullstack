@@ -72,3 +72,10 @@ npm i multer --save
     msg: 'xxx'
 }
 ~~~ 
+### 3. add接口
+`/add` post User{...}
+### 4. list接口
+- 查询所有：`/list` get
+- 查询单个：`/list/:id` get id
+- 删除单个：`/list/:id` delete id
+- 修改单个：`/list/:id` put id
