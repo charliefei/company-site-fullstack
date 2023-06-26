@@ -45,14 +45,16 @@ export const useUserAdd = (userForm, router) => {
   return submitForm
 }
 
+// 展示用户列表
 export const useGetUserList = () => {
     return async (userList) => {
         const {data: res} = await axios.get('/admin/user/list')
-        console.log(res); // [{_id,...}]
+        console.log('用户列表', res); // [{_id,...}]
         userList.value = res.data
     }
 }
 
+// 表单内置修改前数据
 export const useHandleEdit = (dialogVisible,userForm) => {
     return async (user) => {
         const {data:res} = await axios.get(`/admin/user/list/${user._id}`)
@@ -66,6 +68,7 @@ export const useHandleEdit = (dialogVisible,userForm) => {
     }
 }
 
+// 向后端提交修改完的数据
 export const useHandleEditConfirm = (getUserList,userList,dialogVisible) => {
     const handleEditConfirm = async (formEl, userForm) => {
         if (!formEl) return
@@ -97,6 +100,7 @@ export const useHandleEditConfirm = (getUserList,userList,dialogVisible) => {
     return handleEditConfirm
 }
 
+// 删除某个用户
 export const useHandleDelete = (getUserList, userList) => {
     return async (user) => {
         const {data:res} = await axios.delete(`/admin/user/list/${user._id}`)

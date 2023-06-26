@@ -52,18 +52,7 @@
           </el-form-item>
 
           <el-form-item label="头像" prop="avatar">
-            <el-upload
-              class="avatar-uploader"
-              action="#"
-              :auto-upload="false"
-              :show-file-list="false"
-              :on-change="handleChange"
-            >
-              <img v-if="userForm.avatar" :src="uploadAvatarUrl" class="avatar" />
-              <el-icon v-else class="avatar-uploader-icon">
-                <Plus />
-              </el-icon>
-            </el-upload>
+            <Upload :image="userForm.avatar" :handleChange="handleChange" />
           </el-form-item>
 
           <el-form-item>
@@ -78,10 +67,11 @@
 </template>
 
 <script setup>
-import { UserFilled, Plus } from '@element-plus/icons-vue'
+import { UserFilled } from '@element-plus/icons-vue'
 import { useStore } from "vuex";
 import { computed,ref,reactive } from "vue";
 import { useSubmitForm } from '@/hooks/editHook.js'
+import Upload from '../../components/Upload.vue';
 
 const store = useStore()
 const avatarUrl = computed(() => {
@@ -123,10 +113,6 @@ const handleChange = (file) => {
   userForm.file = file.raw
   userForm.avatar = url
 }
-const uploadAvatarUrl = computed(() => 
-  userForm.avatar.includes('blob') ? 
-  userForm.avatar : 'http://localhost:3000' + userForm.avatar
-)
 
 // 提交表单
 const submitForm = useSubmitForm(userForm, store)
@@ -139,39 +125,5 @@ const submitForm = useSubmitForm(userForm, store)
   .box-card{
     text-align: center;
   }
-
-  .avatar-uploader .avatar {
-    width: 178px;
-    height: 178px;
-    display: block;
-  }
-}
-</style>
-
-<style>
-.avatar-uploader .el-upload {
-  border: 1px dashed var(--el-border-color);
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: var(--el-transition-duration-fast);
-}
-
-.avatar-uploader .el-upload:hover {
-  border-color: var(--el-color-primary);
-}
-
-.el-icon.avatar-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
-  width: 178px;
-  height: 178px;
-  text-align: center;
-}
-
-.avatar {
-  width: 178px;
-  height: 178px;
 }
 </style>

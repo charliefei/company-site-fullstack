@@ -21,6 +21,7 @@ app.use(TokenVerifyMw)
  * admin
  */
 app.use('/admin/user', require('./routes/admin/userRouter'))
+app.use('/admin/news', require('./routes/admin/newsRouter'))
 
 // 捕获404并转发到错误级别中间件处理
 app.use(function(req, res, next) {
